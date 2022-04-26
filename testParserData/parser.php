@@ -10,7 +10,6 @@ function startPart($parser, $name, $attrs) {
 
     if(!empty($name)) {
         if ($name == 'vehicle') {
-            // создание массива для хранения информации
             $vehicles[] = [];
         }
         $part = $name;
@@ -59,7 +58,6 @@ function characterData($parser, $data) {
  xml_set_element_handler($parser, "startPart", "endPart");
  xml_set_character_data_handler($parser, "characterData");
 
-   // открытие файла XML
    if (!($handle = fopen('data.xml', "r"))) {
        die("could not open XML input");
    }
@@ -67,7 +65,7 @@ function characterData($parser, $data) {
    while($data = fread($handle, 8192)) { // чтение файла
        xml_parse($parser, $data);  // начать разбор XML-документа
    }
-// просто украдено чтобы посмотреть работает ли перед внесением в базу (не работает)
+// тест в браузере перед добавлением в базу, выполнено через exсel
  xml_parser_free($parser); // удаление парсера
  $i = 1;
 
